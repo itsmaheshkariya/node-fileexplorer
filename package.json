@@ -1,12 +1,12 @@
 {
-  "name": "node-fileexplorer",
+  "name": "@m-k/node-fileexplorer",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon"
   },
   "keywords": [],
-  "author": "",
+  "author": "Mahesh Kariya",
   "license": "ISC",
   "dependencies": {
     "archiver": "^3.1.1",
@@ -25,5 +25,13 @@
   "devDependencies": {
     "nodemon": "^2.0.2"
   },
-  "description": ""
+  "description": "Node File Explorer ### Install Dependences  ``` npm install``` ### Start Server ```npm start``` ### Dev mode ```npm run dev```",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maheshkareeya/node-fileexplorer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/maheshkareeya/node-fileexplorer/issues"
+  },
+  "homepage": "https://github.com/maheshkareeya/node-fileexplorer#readme"
 }
