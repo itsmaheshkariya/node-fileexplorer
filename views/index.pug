@@ -1,0 +1,169 @@
+doctype html
+head
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm' crossorigin='anonymous')
+    link(href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", rel="stylesheet", integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN", crossorigin="anonymous")
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.35.0/codemirror.css")
+    title Hello, world!
+    body    
+        //- form#frmUploader(enctype='multipart/form-data', action='/api/Upload', method='POST')
+        //-     input(type='file', name='imgUploader', multiple='')
+        //-     input#btnSubmit(type='submit', name='submit', value='Upload')
+        //- button.btn.btn-primary(type='button', data-toggle='modal', data-target='#exampleModal') Click year
+        #exampleModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+            form.modal-dialog(method="POST" action="/createfolder" role='document')
+                .modal-content
+                    .modal-header
+                        h5#exampleModalLabel.modal-title Create Folder
+                        button.close(type='button', data-dismiss='modal', aria-label='Close')
+                            span(aria-hidden='true') ×
+                    .modal-body
+                        input#foldername.webcampics.mt-5.form-control(name="foldername" type='text' placeholder="Folder Name") 
+                    .modal-footer
+                        button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                        button.btn.btn-primary(type="submit") Create
+        script.
+            function dosome(){  
+                let inputs = document.getElementsByClassName( 'webcampics' ),
+                    names  = [].map.call(inputs, function( input ) {
+                        if(input.checked == true){
+                            return input.value;
+                        }
+                        
+                    }).join( ',' );
+                //- console.log(names)
+                //- axios({
+                //- method: 'POST',
+                //- url: 'http://loaclhost:3000/actions',
+                //- data: {
+                //-     "names": names
+                //- }
+                //- }).then(function() {
+                //- console.log("done");
+                //- });
+            }
+        .containerr.mt-1
+            .row
+                .col.col-lg-4
+                    form(action="/actions",method="POST")
+                        .btn-toolbar.mb-2(role='toolbar', aria-label='Toolbar with button groups')
+                            //- .btn-group.mr-2(role='group', aria-label='First group')
+                            button.btn.btn-dark.ml-1(type='submit' name="delete")
+                                i.fa.fa-trash
+                            button.btn.btn-dark.ml-1(type='button' name="rename")
+                                i.fa.fa-pencil
+                            button.btn.btn-dark.ml-1(type='button', data-toggle='modal', data-target='#exampleModal')
+                                i.fa.fa-folder
+                            button.btn.btn-dark.ml-1(type='submit' name="zip")
+                                i.fa.fa-archive
+                            button.btn.btn-dark.ml-1(type='submit' name="unzip")
+                                i.fa.fa-file-archive-o
+                            //- button.btn.btn-secondary.ml-1(type='button') 4
+                            //- .btn-group.mr-2(role='group', aria-label='Second group')
+                            //-     button.btn.btn-secondary(type='button') 5
+                            //-     button.btn.btn-secondary(type='button') 6
+                            //-     button.btn.btn-secondary(type='button') 7
+                            //- .btn-group(role='group', aria-label='Third group')
+                            //-     button.btn.btn-secondary(type='button') 8
+                        .list-group
+                            //- a.list-group-item.list-group-item-action.active(href='#')
+                            if alert == 'delete'
+                                .alert.alert-dark
+                                    | Successfully Deleted
+                            input#filter-search.webcampics.mb-3.form-control(type='text' placeholder="Search") 
+                            a.list-group-item.list-group-item-action(href='/backwalafolder') ...
+                            each val in files
+                            
+                                
+                                a.list-group-item.list-group-item-action(href=val )
+                                    input#getvalues.webcampics.ml-2.form-check-input(name="selected" type='checkbox', value=val)
+                                    i.fa.fa-folder.ml-5
+                                        span.ml-5(filter-value=val)= val
+                                
+                                
+                                
+                .col.col-lg-8
+                    form.form-group(action="/createnewfile",method="POST")
+                        button.btn.btn-dark.ml-1.btn-small.mb-1.float-right(type='submit')
+                            i.fa.fa-save
+                        button.btn.btn-dark.ml-1.btn-small.mb-1.float-right(type='button' disabled)
+                            i.fa.fa-paste
+                        button.btn.btn-dark.ml-1.btn-small.mb-1.float-right(type='button' disabled)
+                            i.fa.fa-copy
+                        button.btn.btn-dark.ml-1.btn-small.mb-1.float-right(type='button' disabled)
+                            i.fa.fa-scissors
+                        button.btn.btn-dark.ml-1.btn-small.mb-1.float-right(type="button" disabled)
+                            i.fa.fa-refresh.fa-spin
+                        a.btn.btn-dark.ml-1.btn-small.mb-1.float-right(href="/")
+                            i.fa.fa-home
+                        
+                        //- label(for='exampleFormControlTextarea1') Example textarea
+                        input#filename.webcampics.form-control.mb-2(name="filename" type='text' value=file)
+                        textarea#editor.form-control(rows='20' name="textinput")=textarea
+                         
+                    form(action="/postcmd",method="POST")
+                        div.form-inline
+                            textarea.terminal.form-control(rows='13' cols="23" name="cmdinput")
+                            textarea.terminal.form-control.ml-1(rows='13' cols="23")
+                                | > #{cmdinput}
+                                | #{stdout}
+                            //- textarea.terminal.form-control.ml-1(rows='13' cols="23")= stderr 
+                        button.btn.btn-dark.ml-1.btn-block.mt-1(type='submit') Run
+
+
+        script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js' integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN' crossorigin='anonymous')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js' integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q' crossorigin='anonymous')
+        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js' integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl' crossorigin='anonymous')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.35.0/codemirror.js')
+        script(src='https://codemirror.net/mode/javascript/javascript.js')
+        //- link(rel="stylesheet", href="https://codemirror.net/theme/darcula.css")
+
+        script.
+            var editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
+            mode: "javascript",
+            lineNumbers: true,
+            });
+            editor.save()
+
+
+            var inputId 	= 'filter-search';
+            var itemsData 	= 'filter-value';
+            var displaySet = false;
+            var displayArr = [];
+
+            function getDisplayType(element) {
+                var elementStyle = element.currentStyle || window.getComputedStyle(element, "");
+                return elementStyle.display;
+            }
+
+            document.getElementById(inputId).onkeyup = function() {
+                var searchVal = this.value.toLowerCase();
+                var filterItems = document.querySelectorAll('[' + itemsData + ']');
+
+                for(var i = 0; i < filterItems.length; i++) {
+                    if (!displaySet) {
+                        displayArr.push(getDisplayType(filterItems[i]));
+                    }
+
+                    filterItems[i].style.display = 'none';
+
+                    if(filterItems[i].getAttribute('filter-value').indexOf(searchVal) >= 0) {
+                        filterItems[i].style.display = displayArr[i];		
+                    }
+                }
+                
+                displaySet = true;
+            }
+        //- style. 
+        //-     .terminal::before{
+        //-         background:black;
+        //-         border:2px solid aqua;
+        //-         color:aqua;
+        //-     }
+
+        //- script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.min.js")
+
+
+
+
